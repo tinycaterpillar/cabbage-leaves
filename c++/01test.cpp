@@ -9,14 +9,63 @@ typedef long long ll;
 typedef pair<int, int> pi;
 typedef pair<ll, ll> pl;
 
+char lower_alpha(char s)
+{
+    if('A' <= s && s <= 'Z') return (s - 'A')+(int)'a';
+    else return s;
+}
+
+void print(string s, int p)
+{
+    ooop(j, p) cout << s[j];
+    cout << '[' << s[p] << ']';
+    for(int j = p+1; j < s.size(); j++) cout << s[j];
+    cout << endl;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0), cout.tie(0);
 
-    loop(i, 10000) cout << 2 << endl;
-    cout << 1 << endl;
-    cout << 1 << endl;
+    int n; cin >> n;
+
+    bool check[26] {};
+    while(n--){
+        string s;
+        getline(cin, s);
+        bool issetting = false;
+
+        cout << s << endl;
+        int head_ascii = lower_alpha(s[0])-'a';
+        if(!check[head_ascii]) {
+            check[head_ascii] = true;
+            print(s, 0);
+            continue;
+        }
+
+        for(int i = 1; i < s.size(); i++){
+            if(s[i] == ' '){
+                int tar_ascii = lower_alpha(s[i+1])-'a';
+                if(!check[tar_ascii]){
+                    check[tar_ascii] = true;
+                    print(s, i);
+                    continue;
+                }
+            }
+        }
+
+        ooop(i, s.size()){
+            int tar_ascii = lower_alpha(s[i])-'a';
+            if(!check[tar_ascii]){
+                check[tar_ascii] = true;
+                print(s, i);
+                continue;
+            }
+        }
+
+        cout << s << endl;
+    }
 
     return 0;
 }
