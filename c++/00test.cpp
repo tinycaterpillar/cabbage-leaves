@@ -9,38 +9,43 @@ typedef long long ll;
 typedef pair<int, int> pi;
 typedef pair<ll, ll> pl;
 
-ll ceil(ll a, ll b)
-{
-    return (a-1)/b + 1;
-}
-
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0), cout.tie(0);
 
-    ll n, C; cin >> n >> C;
-    vector<ll> squad(n);
-    vector<ll> c(n);
-    ooop(i, n){
-        cin >> c[i];
-        ll d, h; cin >> d >> h;
-        squad[i] = d*h;
-    }
+    int t; cin >> t;
+    while(t--){
+        int n; cin >> n;
+        vector<int> d(n);
+        for(auto& e: d) cin >> e;
 
-    ll m; cin >> m;
-    vector<ll> monster(m);
-    ooop(i, m){
-        ll d, h; cin >> d >> h;
-        monster[i] = d*h;
-    }
+        vector<int> sorted(all(d));
+        sort(all(sorted));
+        map<int, pi> cnt; // {odd, even}
+        ooop(i, n){
+            if(i%2 == 0) cnt[d[i]].second++;
+            else cnt[d[i]].first++;
+        }
 
-    ooop(i, m){
-        ll minval = C+1;
-        ooop(j, n) minval = min(minval, c[j]*ceil(monster[i]+1, squad[j]));
-        cout << ((minval == C+1)? -1: minval) << ' ';
+        bool avail = true;
+        for(const auto& [tar, pair]: cnt){
+            int cri = pair.first - pair.second;
+            if(abs(cri) > 1){
+                avail = false;
+                break;
+            }
+
+            if(cri == 0) continue;
+
+            int ind = (lower_bound(all(sorted), tar) - sorted.begin())%2;
+            if(ind == 1 && cri == -1 || ind == 0 && cri == 1){
+                avail = false;
+                break;
+            }
+        }
+        cout << ((avail)? "YES": "NO") << endl;
     }
-    cout << endl;
 
     return 0;
 }

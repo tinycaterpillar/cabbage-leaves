@@ -6,17 +6,17 @@ class Joeun_jiksagakyeong():
         self.h = d
 
 def loU(l, r):
-    if l.x >= r.x: l, r = r, l
-    if l.y >= r.y: l.y, r.y = l.y - l.h, 2*l.y - r.y - r.h
+    if l.x > r.x: l, r = r, l
+    if l.y > r.y:
+        l.x = -1*(l.x + l.w)
+        r.x +=-1*(r.x + r.w)
+        l, r = r, l
 
     if l.x + l.w <= r.x or l.y + l.h <= r.y: return 0
     else:
-        if l.y + l.h <= r.y + r.h:
-            intersect_area = (l.x + l.w - r.x)*(l.y + l.h - r.y)
-            union_area = l.w * l.h + r.w * r.h - intersect_area
-        else:
-            intersect_area = (l.x + l.w - r.x)*(r.y + r.h - r.w)
-            union_area = l.w * l.h + r.w * r.h - intersect_area
+        inter_x, inter_y = min(l.x+l.w, r.x+r.w), min(l.y+l.h, r.y+r.h)
+        intersect_area = (inter_x - r.x)*(inter_y - r.y)
+        union_area = l.w * l.h + r.w * r.h - intersect_area
         return intersect_area / union_area
 
 my_list = [[0, 0, 2, 2], [1, 1, 3, 2], [0, 1, 2, 3]]
