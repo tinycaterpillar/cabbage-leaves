@@ -1,0 +1,56 @@
+{
+	// Place your cabbage-leaves workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"PS_tempate_for_python": {
+		"scope": "python",
+        "prefix": "PS",
+        "body": [
+            "import sys",
+			"import os.path",
+			"",
+			"if os.path.isfile('input.txt'):",
+			"\tsys.stdin = open('input.txt')",
+			"\tsys.stdout = open('output.txt', 'w')",
+			"input = sys.stdin.readline",
+			"",
+			"$0"
+        ],
+        "description": "alogorithm template for c++"
+    },	
+
+	"PS_template_for_c++": {
+		"scope": "cpp",
+        "prefix": "PS",
+        "body": [
+            "#include <bits/stdc++.h>",
+			"#define endl '\\n' // don't use when you cover interactive problem",
+			"#define all(v) (v).begin(), (v).end()",
+            "",
+            "using namespace std;",
+			"typedef long long ll;",
+			"typedef pair<int, int> pi;",
+			"typedef pair<ll, ll> pl;",
+            "",
+            "int main()",
+            "{",
+			"\t#ifndef ONLINE_JUDGE",
+            "\t\tfreopen(\"input.txt\", \"r\", stdin);",
+			"\t\tfreopen(\"output.txt\", \"w\", stdout);",
+			"\t#endif",
+            "",
+			"\tios::sync_with_stdio(false);",
+			"\tcin.tie(0), cout.tie(0);",
+			"",
+			"\t$0",
+			"",
+            "\treturn 0;",
+            "}"
+        ],
+        "description": "alogorithm template for c++"
+    }	
+}
