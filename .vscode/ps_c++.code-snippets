@@ -11,7 +11,6 @@
         "prefix": "PS",
         "body": [
             "import sys",
-			"import os.path",
 			"",
 			"input = sys.stdin.readline",
 			"",
@@ -20,18 +19,43 @@
         "description": "alogorithm template for c++"
     },	
 
+	"CP_template_for_c++": {
+		"scope": "cpp",
+        "prefix": "CP",
+        "body": [
+            "#include <bits/stdc++.h>",
+			"#define endl '\\n' // don't use when you cover interactive problem",
+			"#define all(v) v.begin(), v.end()",
+            "",
+            "using namespace std;",
+            "",
+            "int main() {",
+			"\tios::sync_with_stdio(false), cin.tie(0);",
+			"",
+			"\tint T; cin >> T;",
+			"\twhile(T--){",
+			"\t\t$0"
+			"",
+			"\t}",
+			"",
+            "\treturn 0;",
+            "}"
+        ],
+        "description": "alogorithm template for c++"
+    },
+	
 	"PS_template_for_c++": {
 		"scope": "cpp",
         "prefix": "PS",
         "body": [
             "#include <bits/stdc++.h>",
 			"#define endl '\\n' // don't use when you cover interactive problem",
+			"#define all(v) v.begin(), v.end()",
             "",
             "using namespace std;",
             "",
             "int main() {",
-			"\tios::sync_with_stdio(false);",
-			"\tcin.tie(0), cout.tie(0);",
+			"\tios::sync_with_stdio(false), cin.tie(0);",
 			"",
 			"\t$0",
 			"",

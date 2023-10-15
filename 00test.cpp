@@ -1,77 +1,49 @@
 #include <bits/stdc++.h>
-#include <format>
 #define endl '\n' // don't use when you cover interactive problem
+#define all(v) v.begin(), v.end()
+#define NON -1
+#define BRIDGE 100
+#define SEQ 20
 
 using namespace std;
+typedef long long ll; 
 
-int A, B, C; // A <= B <= C
-set<string> visited;
+ll sz, bz; // sequence size, bridge size
+string seq;
+string bridge[2];
+ll dp[2][BRIDGE][SEQ]; // dp[flag][bridge][dep]
 
-void sort_abc()
+// flag := 악마다리(0)? 천사다리(1)?, ind := 다리 index, dep := 두루마리 index
+ll go(ll flag, ll ind, ll dep)
 {
-    if(A > B) swap(A, B);
-    if(A > C) swap(A, C);
-    if(B > C) swap(B, C);
+    if(dp[flag][ind][dep] != NON) return dp[flag][ind][dep];
+    
+    if(ind == bz) return dep == sz;
+    if(dep == sz) return 1;
+
+    // 사용할 수 있음
+    if(bridge[flag][ind] == seq[dep]){
+        return dp[flag][ind][dep] = go(flag^1, ind+1, dep+1) + go(flag, ind+1, dep);
+    }   
+    // 사용할 수 없음
+    else{
+        return dp[flag][ind][dep] = go(flag, ind+1, dep);
+    } 
 }
-
-void set_back(int tmp_a, int tmp_b, int tmp_c){
-    A = tmp_a;
-    B = tmp_b;
-    C = tmp_c;
-}
-
-string encode()
-{
-    stringstream ss;
-    ss << format("{:0>3}", A);
-    ss << format("{:0>3}", B);
-    ss << format("{:0>3}", C);
-    return ss.str();
-}
-
-bool dfs()
-{
-    visited.insert(encode());
-
-    if(A < C){
-        int tmp_a = A, tmp_b = B, tmp_c = C;
-        
-        if(A < B){
-            B -= A;
-            A *= 2;
-            sort_abc();
-            if(visited.find(encode()) != visited.end() && dfs()) return true;
-            set_back(tmp_a, tmp_b, tmp_c);
-        }
-
-        if(B < C){
-            C -= B;
-            B *= 2;
-            sort_abc();
-            if(visited.find(encode()) != visited.end() && dfs()) return true;
-            set_back(tmp_a, tmp_b, tmp_c);
-        }
-
-        C -= A;
-        A *= 2;
-        sort_abc();
-        if(visited.find(encode()) != visited.end() && dfs()) return true;
-        set_back(tmp_a, tmp_b, tmp_c);
-
-        return false;
-    }
-    else return true;
-}
-
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
+    ios::sync_with_stdio(false), cin.tie(0);
 
-    cin >> A >> B >> C;
-    sort_abc();
-    cout << dfs() << endl;
-    for(auto e: visited) cout << e << endl;
+    cin >> seq >> bridge[0] >> bridge[1];
+    sz = seq.size(), bz = bridge[0].size();
+    assert(sz <= 20);
+    assert(bz <= 100);
+
+    for(ll i = 0; i < BRIDGE; i++){
+        for(ll j = 0; j < SEQ; j++) dp[0][i][j] = dp[1][i][j] = NON;
+    }
+
+    cout << go(0, 0, 0) + go(1, 0, 0) << endl;
 
     return 0;
 }
