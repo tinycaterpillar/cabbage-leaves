@@ -1,15 +1,115 @@
-#include <bits/stdc++.h>
-#define endl '\n' // don't use when you cover interactive problem
-#define all(v) v.begin(), v.end()
+NO
+YES
+NO
+NO
+NO
+YES
+YES
+YES
+YES
+YES
 
-using namespace std;
-typedef long long ll;
-typedef pair<int, int> pi;
+NO
+YES
+YES
+YES
+NO
+YES
+NO
+YES
+YES
+YES
 
-int main() {
-    ios::sync_with_stdio(false), cin.tie(0);
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
+YES
 
-    cout << log2((ll)1e18) << endl;
+YES
+NO
+YES
+YES
+YES
+YES
+YES
+NO
+YES
+YES
 
-    return 0;
-}
+YES
+YES
+YES
+NO
+NO
+YES
+YES
+YES
+YES
+NO
+
+NO
+YES
+NO
+YES
+NO
+YES
+YES
+NO
+YES
+YES
+
+YES
+NO
+YES
+YES
+NO
+YES
+YES
+YES
+YES
+YES
+
+NO
+YES
+YES
+YES
+YES
+YES
+YES
+NO
+YES
+NO
+
+YES
+NO
+NO
+NO
+YES
+NO
+NO
+NO
+YES
+YES
+
+YES
+NO
+NO
+YES
+YES
+YES
+YES
+YES
+NO
+NO
+
+NO
+NO
+YES
+NO
+YES
