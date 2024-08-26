@@ -1,6 +1,10 @@
 import random
 
-n = random.randint(3, 30)
-m = random.randint(0, n*(n-1)//2)
+n = 10
 with open("input.txt", 'w') as f:
-    f.write(f"{n} {m}\n")
+    f.write(f"{n}\n")
+    f.write(' '.join(str(random.randint(1, 10)) for _ in range(n)))
+    f.write("\n")
+    f.write(' '.join(str(random.randint(1, 10)) for _ in range(n)))
+    f.write("\n")
+
