@@ -1,9 +1,6 @@
 import random
 
-n = random.randint(1, 50)
-l = "-X"
+n = random.randint(3, 30)
+m = random.randint(0, n*(n-1)//2)
 with open("input.txt", 'w') as f:
-    f.write(f"{n}\n")
-    for _ in range(n):
-        f.write("".join(l[random.randint(0, 1)] for _ in range(n)))
-        f.write("\n")
+    f.write(f"{n} {m}\n")
